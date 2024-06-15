@@ -11,7 +11,8 @@ const sounds = {
     start: new Audio('start.mp3'),
     eat: new Audio('eat.mp3'),
     gameOver: new Audio('gameover.mp3'),
-    point: new Audio('point.mp3')
+    point: new Audio('point.mp3'),
+    superpoint: new Audio('superpoint.mp3'),
 };
 const foodImage = new Image();
 foodImage.src = "food.png";
@@ -95,7 +96,10 @@ function moveSnake() {
         enemy = null;  // Remove enemy when food is eaten
         points++;
         updateTitle();
-        if (points % 10 === 0) {
+        if (points % 20 === 0) {
+            sounds.superpoint.play();
+        }
+        else if (points % 10 === 0) {
             sounds.point.play();
         } else {
             sounds.eat.play();
