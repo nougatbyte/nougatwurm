@@ -13,6 +13,7 @@ const sounds = {
     gameOver: new Audio('gameover.mp3'),
     point: new Audio('point.mp3'),
     superpoint: new Audio('superpoint.mp3'),
+    selfeat: new Audio('selfeat.mp3'),
 };
 const foodImage = new Image();
 foodImage.src = "food.png";
@@ -48,7 +49,7 @@ function preloadImages(paths, callback) {
 function gameLoop() {
     if (isGameOver()) {
         clearInterval(gameInterval);
-        sounds.gameOver.play();
+        sounds.selfeat.play();  // Play selfeat.mp3 instead of gameover.mp3
         alert("Game Over");
         resetGame();
     } else {
@@ -60,12 +61,15 @@ function gameLoop() {
     }
 }
 
+
 function isGameOver() {
     const head = snake[0];
+    // Check if head is out of canvas bounds
     if (head.x < 0 || head.x >= canvasWidth || head.y < 0 || head.y >= canvasHeight) {
         return true;
     }
-    for (let i = 1; i < snake.length; i++) {
+    // Check if head collides with any part of the snake except the immediate next segment
+    for (let i = 1; i < snake.length - 1; i++) {
         if (head.x === snake[i].x && head.y === snake[i].y) {
             return true;
         }
