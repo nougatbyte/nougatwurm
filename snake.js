@@ -91,17 +91,15 @@ function moveSnake() {
     snake.unshift(head);
     if (head.x === food.x && head.y === food.y) {
 
-        // @todo: dont play sound if 10th point (or 20th etc)
-        if (points % 10 !== 0) {
-            sounds.eat.play();
-        }
-
         food = spawnFood();
         enemy = null;  // Remove enemy when food is eaten
         points++;
         updateTitle();
         if (points % 10 === 0) {
             sounds.point.play();
+        } else {
+            sounds.eat.play();
+
         }
     } else {
         snake.pop();
