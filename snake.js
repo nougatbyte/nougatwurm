@@ -15,6 +15,7 @@ const sounds = {
     superpoint: new Audio('superpoint.mp3'),
     selfeat: new Audio('selfeat.mp3'),
     selfeat2: new Audio('selfeat2.mp3'),
+    selfeat3: new Audio('selfeat3.mp3'),
 };
 const foodImage = new Image();
 foodImage.src = "food.png";
@@ -51,11 +52,15 @@ function gameLoop() {
     if (isGameOver()) {
         clearInterval(gameInterval);
         const random = Math.random();
-        if (random < 0.5) {
+
+        if (random < 0.3) {
             sounds.selfeat.play();
-        } else {
+        } else if (random < 0.6) {
             sounds.selfeat2.play();
+        } else {
+            sounds.selfeat3.play();
         }
+
         alert("Game Over");
         resetGame();
     } else {
