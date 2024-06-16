@@ -67,7 +67,6 @@ function gameLoop() {
     }
 }
 
-
 function isGameOver() {
     const head = snake[0];
     // Check if head is out of canvas bounds
